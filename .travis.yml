@@ -1,0 +1,25 @@
+sudo: required
+services: 
+  - docker
+
+before-install:
+  - docker-compose up --build
+
+script:
+  - docker-compose run api npm run test:coverage
+  - heroku stack:set --app protected-dawn-39658 heroku-18
+  - heroku config:get MLAB_CONN -a protected-dawn-39658 -s  >> .env
+  - heroku config:get PORT -a protected-dawn-39658 -s  >> .env
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  app: $APP_NAME
+  on:
+    branch: master
+
+after_deploy:
+  - docker-compose down
+  - docker system prune -f
+  - docker volume prune -f
