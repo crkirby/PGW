@@ -1,0 +1,22 @@
+{
+  "name": "project-api",
+  "version": "1.0.0",
+  "description": "Worflow environment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "author": "Cameron",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.22"
+  },
+  "devDependencies": {
+    "flush-promises": "^1.0.2",
+    "jest": "^24.7.1",
+    "supertest": "^4.0.2"
+  }
+}
