@@ -1,6 +1,5 @@
 const mongoose      = require('mongoose')
 const Product       = require('../models/product')
-const flushPromises = require('flush-promises')
 const productDAL    = require('../api/productsDAL')
                       require('dotenv').config()
 
@@ -16,9 +15,8 @@ describe('Products Data Access Layer', () => {
                 jest.spyOn(mongoose, 'connect').mockResolvedValue({})
                 jest.spyOn(Product, 'find').mockResolvedValue(products)
                 jest.spyOn(mongoose, 'disconnect').mockResolvedValue({})
+                
                 result = await productDAL.getProducts()
-
-                await flushPromises()
             })
 
             afterAll(() => {
@@ -45,8 +43,12 @@ describe('Products Data Access Layer', () => {
         describe('failure', () => {
             describe('when connecting to the database fails', () => {
                 const err = new Error()
-                beforeAll(() => {
+                let result
+
+                beforeAll(async () => {
                     jest.spyOn(mongoose, 'connect').mockRejectedValue(err)
+
+                    result = await productDAL.getProducts()
                 })
 
                 afterAll(() => {
@@ -54,7 +56,6 @@ describe('Products Data Access Layer', () => {
                 })
 
                 it('returns a error', async () => {
-                    const result = await productDAL.getProducts()
                     expect(result).toEqual(err)
                 })
             })
@@ -72,9 +73,8 @@ describe('Products Data Access Layer', () => {
                 jest.spyOn(mongoose, 'connect').mockResolvedValue({})
                 jest.spyOn(Product, 'findOne').mockResolvedValue(product)
                 jest.spyOn(mongoose, 'disconnect').mockResolvedValue({})
+                
                 result = await productDAL.getProduct(id)
-
-                await flushPromises()
             })
 
             afterAll(() => {
@@ -105,9 +105,8 @@ describe('Products Data Access Layer', () => {
 
                 beforeAll(async () => {
                     jest.spyOn(mongoose, 'connect').mockRejectedValue(err)
+                    
                     result = await productDAL.getProduct(id)
-
-                    await flushPromises()
                 })
 
                 afterAll(() => {

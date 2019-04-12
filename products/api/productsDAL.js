@@ -1,6 +1,6 @@
-const mongoose  = require('mongoose')
-const Product   = require('../models/product')
-                  require('dotenv').config()
+const mongoose = require('mongoose')
+const Product = require('../models/product')
+require('dotenv').config()
 
 
 const productsDAL = {
@@ -19,11 +19,10 @@ const productsDAL = {
         try {
             await connectDatabase({ useNewUrlParser: true })
             const product = await Product.findOne({ productId: id })
+            await disconnectDatabase()
             return product
         } catch (e) {
             return e
-        } finally {
-            await disconnectDatabase()
         }
     },
 }
