@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "_id": "3456gfghj5555555567h8jhg",
+      "googleId": "123456789876543219876",
+      "username": "Bob Test",
+      "thumbnail": "https://www.google.com/s2/photos/private/BTGooglePicture"
+    },
+    {
+      "_id": "8dhys8djksjjkw833bedndk3",
+      "googleId": "019283746556473829201",
+      "username": "Mike Test",
+      "thumbnail": "https://www.google.com/s2/photos/private/MTGooglePicture"
+    }
+  ]
+}
