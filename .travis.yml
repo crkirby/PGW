@@ -11,10 +11,10 @@ before-install:
 
 script:
   - heroku stack:set --app $APP_NAME heroku-18
-  - heroku config:get CLIENT_ID -a $APP_NAME -s  >> .env
-  - heroku config:get CLIENT_SECRET -a $APP_NAME -s  >> .env
-  - heroku config:get MLAB_CONN -a $APP_NAME -s  >> .env
-  - heroku config:get PORT -a $APP_NAME -s  >> .env
+  - heroku config:get CLIENT_ID -a $APP_NAME -s  >> ./api/.env
+  - heroku config:get CLIENT_SECRET -a $APP_NAME -s  >> ./api/.env
+  - heroku config:get MLAB_CONN -a $APP_NAME -s  >> ./api/.env
+  - heroku config:get PORT -a $APP_NAME -s  >> ./api/.env
   - docker-compose run api npm run test:coverage
 
 deploy:
