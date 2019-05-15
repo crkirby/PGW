@@ -18,7 +18,7 @@ const productsDAL = {
     getProduct: async (id) => {
         try {
             await connectDatabase({ useNewUrlParser: true })
-            const product = await Product.findOne({ productId: id })
+            const product = await Product.findById(id)
             await disconnectDatabase()
             return product
         } catch (e) {

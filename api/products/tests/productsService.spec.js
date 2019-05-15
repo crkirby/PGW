@@ -42,7 +42,7 @@ describe('Products Service', () => {
         })
 
         it('calls the productDAL', () => {
-            expect(productsDAL.getProduct).toHaveBeenCalled()
+            expect(productsDAL.getProduct).toHaveBeenCalledWith(id)
         })
 
         it('returns the product', () => {

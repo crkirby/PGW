@@ -15,6 +15,7 @@ describe('Products Controller', () => {
             jest.restoreAllMocks()
         })
 
+        //headers
         it('returns a OK status', async () => {
             const { body, status } = await request(app).get('/products')
             expect(status).toEqual(200)

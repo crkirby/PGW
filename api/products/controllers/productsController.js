@@ -1,6 +1,6 @@
 const productsService = require('../services/productsService')
 
-exports.index = async (req, res) => {
+exports.index = async (_req, res) => {
     const products = await productsService.getProducts()
     res.send(products)
 }

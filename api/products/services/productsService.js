@@ -1,8 +1,7 @@
 const productsDAL = require('../api/productsDAL')
 
 const productsService = {
-    getProduct: async (_id) => {
-        const id = +_id
+    getProduct: async (id) => {
         const product = await productsDAL.getProduct(id)
         return product
     },

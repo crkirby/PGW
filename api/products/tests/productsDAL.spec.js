@@ -71,7 +71,7 @@ describe('Products Data Access Layer', () => {
 
             beforeAll(async () => {
                 jest.spyOn(mongoose, 'connect').mockResolvedValue({})
-                jest.spyOn(Product, 'findOne').mockResolvedValue(product)
+                jest.spyOn(Product, 'findById').mockResolvedValue(product)
                 jest.spyOn(mongoose, 'disconnect').mockResolvedValue({})
                 
                 result = await productDAL.getProduct(id)
@@ -86,7 +86,7 @@ describe('Products Data Access Layer', () => {
             })
 
             it('retrieves the product', () => {
-                expect(Product.findOne).toHaveBeenCalled()
+                expect(Product.findById).toHaveBeenCalledWith(id)
             })
 
             it('closes the database connection', () => {
